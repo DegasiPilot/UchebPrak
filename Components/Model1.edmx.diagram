@@ -4,45 +4,45 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="61c8284d82a348d2be74ef1ac2625003" Name="Diagram1" ZoomLevel="86">
+      <Diagram DiagramId="16d339eeea6c439bb2fdfca14ec103e8" Name="Diagram1">
         <EntityTypeShape EntityType="UchebPratika_Model.Akademiki" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UchebPratika_Model.cveti_VashaFamilia" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Disciplina" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Engineer" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Fakultet" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Disciplina" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Engineer" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Examen" Width="1.5" PointX="9.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Fakultet" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UchebPratika_Model.Gimnazisty" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UchebPratika_Model.Jivotnie_VashaFamilia" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Kafedra" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Prepodavatel" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Sotrudnik" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Specialnost" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Kafedra" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Prepodavatel" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Specialnost" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UchebPratika_Model.strani" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Strani_VashaFamilia" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.strani2" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Student" Width="1.5" PointX="7.5" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.sysdiagrams" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.ycheniki" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.ypravlenie" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Ypravlenie_VashaFamilia" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Zav_Kafedra" Width="1.5" PointX="7.5" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Zayavka" Width="1.5" PointX="10.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Strani_VashaFamilia" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.strani2" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Student" Width="1.5" PointX="7.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.ycheniki" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.ypravlenie" Width="1.5" PointX="11.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Ypravlenie_VashaFamilia" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Zav_Kafedra" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Zayavka" Width="1.5" PointX="10.5" PointY="9.5" IsExpanded="true" />
         <AssociationConnector Association="UchebPratika_Model.FK_Disciplina_Kafedra" ManuallyRouted="false" />
+        <AssociationConnector Association="UchebPratika_Model.FK_Examen_Disciplina" ManuallyRouted="false" />
         <AssociationConnector Association="UchebPratika_Model.FK_Zayavka_Disciplina" ManuallyRouted="false" />
-        <AssociationConnector Association="UchebPratika_Model.FK_Engineer_Sotrudnik" ManuallyRouted="false" />
+        <AssociationConnector Association="UchebPratika_Model.FK_Examen_Prepodavatel" ManuallyRouted="false" />
         <AssociationConnector Association="UchebPratika_Model.FK_Kafedra_Fakultet" ManuallyRouted="false" />
-        <AssociationConnector Association="UchebPratika_Model.FK_Sotrudnik_Kafedra" ManuallyRouted="false" />
         <AssociationConnector Association="UchebPratika_Model.FK_Specialnost_Kafedra" ManuallyRouted="false" />
-        <AssociationConnector Association="UchebPratika_Model.FK_Prepodavatel_Sotrudnik" ManuallyRouted="false" />
-        <AssociationConnector Association="UchebPratika_Model.FK_Prepodavatel_Sotrudnik1" ManuallyRouted="false" />
-        <AssociationConnector Association="UchebPratika_Model.FK_Zav_Kafedra_Sotrudnik" ManuallyRouted="false" />
         <AssociationConnector Association="UchebPratika_Model.FK_Student_Specialnost" ManuallyRouted="false" />
         <AssociationConnector Association="UchebPratika_Model.FK_Zayavka_Specialnost" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Examen" Width="1.5" PointX="9.75" PointY="6.75" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Examen_Student" Width="1.5" PointX="12" PointY="9.375" />
-        <AssociationConnector Association="UchebPratika_Model.FK_Examen_Disciplina" />
-        <AssociationConnector Association="UchebPratika_Model.FK_Examen_Prepodavatel" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Examen_Student" Width="1.5" PointX="13" PointY="9.625" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Sotrudnik" Width="1.5" PointX="5.25" PointY="8" />
+        <AssociationConnector Association="UchebPratika_Model.FK_Engineer_Sotrudnik" />
         <AssociationConnector Association="UchebPratika_Model.FK_Examen_Student_Examen" />
         <AssociationConnector Association="UchebPratika_Model.FK_Examen_Student_Student" />
+        <AssociationConnector Association="UchebPratika_Model.FK_Sotrudnik_Kafedra" />
+        <AssociationConnector Association="UchebPratika_Model.FK_Prepodavatel_Sotrudnik" />
+        <AssociationConnector Association="UchebPratika_Model.FK_Prepodavatel_Sotrudnik1" />
+        <AssociationConnector Association="UchebPratika_Model.FK_Zav_Kafedra_Sotrudnik" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -18,8 +18,8 @@ namespace UchebPrak.Components
         public Kafedra()
         {
             this.Disciplina = new HashSet<Disciplina>();
-            this.Sotrudnik = new HashSet<Sotrudnik>();
             this.Specialnost = new HashSet<Specialnost>();
+            this.Sotrudnik = new HashSet<Sotrudnik>();
         }
     
         public string Shifr { get; set; }
@@ -30,8 +30,8 @@ namespace UchebPrak.Components
         public virtual ICollection<Disciplina> Disciplina { get; set; }
         public virtual Fakultet Fakultet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sotrudnik> Sotrudnik { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Specialnost> Specialnost { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sotrudnik> Sotrudnik { get; set; }
     }
 }

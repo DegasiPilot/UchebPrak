@@ -29,12 +29,12 @@ namespace UchebPrak.Components
         public virtual DbSet<cveti_VashaFamilia> cveti_VashaFamilia { get; set; }
         public virtual DbSet<Disciplina> Disciplina { get; set; }
         public virtual DbSet<Engineer> Engineer { get; set; }
+        public virtual DbSet<Examen> Examen { get; set; }
         public virtual DbSet<Fakultet> Fakultet { get; set; }
         public virtual DbSet<Gimnazisty> Gimnazisty { get; set; }
         public virtual DbSet<Jivotnie_VashaFamilia> Jivotnie_VashaFamilia { get; set; }
         public virtual DbSet<Kafedra> Kafedra { get; set; }
         public virtual DbSet<Prepodavatel> Prepodavatel { get; set; }
-        public virtual DbSet<Sotrudnik> Sotrudnik { get; set; }
         public virtual DbSet<Specialnost> Specialnost { get; set; }
         public virtual DbSet<strani> strani { get; set; }
         public virtual DbSet<Strani_VashaFamilia> Strani_VashaFamilia { get; set; }
@@ -46,7 +46,7 @@ namespace UchebPrak.Components
         public virtual DbSet<Ypravlenie_VashaFamilia> Ypravlenie_VashaFamilia { get; set; }
         public virtual DbSet<Zav_Kafedra> Zav_Kafedra { get; set; }
         public virtual DbSet<Zayavka> Zayavka { get; set; }
-        public virtual DbSet<Examen> Examen { get; set; }
         public virtual DbSet<Examen_Student> Examen_Student { get; set; }
+        public virtual DbSet<Sotrudnik> Sotrudnik { get; set; }
     }
 }

@@ -17,8 +17,8 @@ namespace UchebPrak.Components
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Disciplina()
         {
-            this.Zayavka = new HashSet<Zayavka>();
             this.Examen = new HashSet<Examen>();
+            this.Zayavka = new HashSet<Zayavka>();
         }
     
         public int Kod { get; set; }
@@ -28,8 +28,8 @@ namespace UchebPrak.Components
     
         public virtual Kafedra Kafedra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Zayavka> Zayavka { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Examen> Examen { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Zayavka> Zayavka { get; set; }
     }
 }

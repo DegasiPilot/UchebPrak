@@ -42,7 +42,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ExamenDate" Type="date" />
           <Property Name="Disciplina_Kod" Type="int" />
           <Property Name="Prepodovatel_TabNomer" Type="int" />
@@ -52,7 +52,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Examen_Id" Type="int" />
           <Property Name="Student_RegNomer" Type="int" />
           <Property Name="Ocenka" Type="int" />
@@ -101,7 +101,7 @@
           <Key>
             <PropertyRef Name="TabNomer" />
           </Key>
-          <Property Name="TabNomer" Type="int" Nullable="false" />
+          <Property Name="TabNomer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Kafedra_Shifr" Type="nchar" MaxLength="2" />
           <Property Name="Familia" Type="nvarchar" MaxLength="50" />
           <Property Name="Dolgnost" Type="nvarchar" MaxLength="50" />
@@ -149,7 +149,7 @@
           <Key>
             <PropertyRef Name="RegNomer" />
           </Key>
-          <Property Name="RegNomer" Type="int" Nullable="false" />
+          <Property Name="RegNomer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Specialnost_Nomer" Type="nvarchar" MaxLength="50" />
           <Property Name="Familia" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -497,8 +497,8 @@
           <Property Name="Nazvanie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Kafedra_Shifr" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Kafedra" Relationship="Self.FK_Disciplina_Kafedra" FromRole="Disciplina" ToRole="Kafedra" />
+          <NavigationProperty Name="Examen" Relationship="Self.FK_Examen_Disciplina" FromRole="Disciplina" ToRole="Examen" />
           <NavigationProperty Name="Zayavka" Relationship="Self.FK_Zayavka_Disciplina" FromRole="Disciplina" ToRole="Zayavka" />
-          <NavigationProperty Name="Examen" Relationship="UchebPratika_Model.FK_Examen_Disciplina" FromRole="Disciplina" ToRole="Examen" />
         </EntityType>
         <EntityType Name="Engineer">
           <Key>
@@ -506,7 +506,20 @@
           </Key>
           <Property Name="TabNomer" Type="Int32" Nullable="false" />
           <Property Name="Specialnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Engineer_Sotrudnik" FromRole="Engineer" ToRole="Sotrudnik" />
+          <NavigationProperty Name="Sotrudnik" Relationship="UchebPratika_Model.FK_Engineer_Sotrudnik" FromRole="Engineer" ToRole="Sotrudnik" />
+        </EntityType>
+        <EntityType Name="Examen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ExamenDate" Type="DateTime" Precision="0" />
+          <Property Name="Disciplina_Kod" Type="Int32" />
+          <Property Name="Prepodovatel_TabNomer" Type="Int32" />
+          <Property Name="Auditoria" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Disciplina" Relationship="Self.FK_Examen_Disciplina" FromRole="Examen" ToRole="Disciplina" />
+          <NavigationProperty Name="Prepodavatel" Relationship="Self.FK_Examen_Prepodavatel" FromRole="Examen" ToRole="Prepodavatel" />
+          <NavigationProperty Name="Examen_Student" Relationship="UchebPratika_Model.FK_Examen_Student_Examen" FromRole="Examen" ToRole="Examen_Student" />
         </EntityType>
         <EntityType Name="Fakultet">
           <Key>
@@ -542,8 +555,8 @@
           <Property Name="Fakultet_Abbr" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Disciplina" Relationship="Self.FK_Disciplina_Kafedra" FromRole="Kafedra" ToRole="Disciplina" />
           <NavigationProperty Name="Fakultet" Relationship="Self.FK_Kafedra_Fakultet" FromRole="Kafedra" ToRole="Fakultet" />
-          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Sotrudnik_Kafedra" FromRole="Kafedra" ToRole="Sotrudnik" />
           <NavigationProperty Name="Specialnost" Relationship="Self.FK_Specialnost_Kafedra" FromRole="Kafedra" ToRole="Specialnost" />
+          <NavigationProperty Name="Sotrudnik" Relationship="UchebPratika_Model.FK_Sotrudnik_Kafedra" FromRole="Kafedra" ToRole="Sotrudnik" />
         </EntityType>
         <EntityType Name="Prepodavatel">
           <Key>
@@ -552,25 +565,9 @@
           <Property Name="Tab_Nomer" Type="Int32" Nullable="false" />
           <Property Name="Zvanie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Stepen" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Prepodavatel_Sotrudnik" FromRole="Prepodavatel" ToRole="Sotrudnik" />
-          <NavigationProperty Name="Sotrudnik1" Relationship="Self.FK_Prepodavatel_Sotrudnik1" FromRole="Prepodavatel" ToRole="Sotrudnik" />
-          <NavigationProperty Name="Examen" Relationship="UchebPratika_Model.FK_Examen_Prepodavatel" FromRole="Prepodavatel" ToRole="Examen" />
-        </EntityType>
-        <EntityType Name="Sotrudnik">
-          <Key>
-            <PropertyRef Name="TabNomer" />
-          </Key>
-          <Property Name="TabNomer" Type="Int32" Nullable="false" />
-          <Property Name="Kafedra_Shifr" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-          <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Dolgnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Zarplata" Type="Int32" />
-          <Property Name="Shef_Id" Type="Int32" />
-          <NavigationProperty Name="Engineer" Relationship="Self.FK_Engineer_Sotrudnik" FromRole="Sotrudnik" ToRole="Engineer" />
-          <NavigationProperty Name="Kafedra" Relationship="Self.FK_Sotrudnik_Kafedra" FromRole="Sotrudnik" ToRole="Kafedra" />
-          <NavigationProperty Name="Prepodavatel" Relationship="Self.FK_Prepodavatel_Sotrudnik" FromRole="Sotrudnik" ToRole="Prepodavatel" />
-          <NavigationProperty Name="Prepodavatel1" Relationship="Self.FK_Prepodavatel_Sotrudnik1" FromRole="Sotrudnik" ToRole="Prepodavatel" />
-          <NavigationProperty Name="Zav_Kafedra" Relationship="Self.FK_Zav_Kafedra_Sotrudnik" FromRole="Sotrudnik" ToRole="Zav_Kafedra" />
+          <NavigationProperty Name="Examen" Relationship="Self.FK_Examen_Prepodavatel" FromRole="Prepodavatel" ToRole="Examen" />
+          <NavigationProperty Name="Sotrudnik" Relationship="UchebPratika_Model.FK_Prepodavatel_Sotrudnik" FromRole="Prepodavatel" ToRole="Sotrudnik" />
+          <NavigationProperty Name="Sotrudnik1" Relationship="UchebPratika_Model.FK_Prepodavatel_Sotrudnik1" FromRole="Prepodavatel" ToRole="Sotrudnik" />
         </EntityType>
         <EntityType Name="Specialnost">
           <Key>
@@ -662,7 +659,7 @@
           </Key>
           <Property Name="TabNomer" Type="Int32" Nullable="false" />
           <Property Name="Expirience" Type="Int32" />
-          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Zav_Kafedra_Sotrudnik" FromRole="Zav_Kafedra" ToRole="Sotrudnik" />
+          <NavigationProperty Name="Sotrudnik" Relationship="UchebPratika_Model.FK_Zav_Kafedra_Sotrudnik" FromRole="Zav_Kafedra" ToRole="Sotrudnik" />
         </EntityType>
         <EntityType Name="Zayavka">
           <Key>
@@ -686,6 +683,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Examen_Disciplina">
+          <End Role="Disciplina" Type="Self.Disciplina" Multiplicity="0..1" />
+          <End Role="Examen" Type="Self.Examen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disciplina">
+              <PropertyRef Name="Kod" />
+            </Principal>
+            <Dependent Role="Examen">
+              <PropertyRef Name="Disciplina_Kod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Zayavka_Disciplina">
           <End Role="Disciplina" Type="Self.Disciplina" Multiplicity="0..1" />
           <End Role="Zayavka" Type="Self.Zayavka" Multiplicity="*" />
@@ -698,15 +707,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Engineer_Sotrudnik">
-          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
-          <End Role="Engineer" Type="Self.Engineer" Multiplicity="0..1" />
+        <Association Name="FK_Examen_Prepodavatel">
+          <End Role="Prepodavatel" Type="Self.Prepodavatel" Multiplicity="0..1" />
+          <End Role="Examen" Type="Self.Examen" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sotrudnik">
-              <PropertyRef Name="TabNomer" />
+            <Principal Role="Prepodavatel">
+              <PropertyRef Name="Tab_Nomer" />
             </Principal>
-            <Dependent Role="Engineer">
-              <PropertyRef Name="TabNomer" />
+            <Dependent Role="Examen">
+              <PropertyRef Name="Prepodovatel_TabNomer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -722,18 +731,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sotrudnik_Kafedra">
-          <End Role="Kafedra" Type="Self.Kafedra" Multiplicity="0..1" />
-          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Kafedra">
-              <PropertyRef Name="Shifr" />
-            </Principal>
-            <Dependent Role="Sotrudnik">
-              <PropertyRef Name="Kafedra_Shifr" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Specialnost_Kafedra">
           <End Role="Kafedra" Type="Self.Kafedra" Multiplicity="0..1" />
           <End Role="Specialnost" Type="Self.Specialnost" Multiplicity="*" />
@@ -743,42 +740,6 @@
             </Principal>
             <Dependent Role="Specialnost">
               <PropertyRef Name="Kafedra_Shifr" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Prepodavatel_Sotrudnik">
-          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
-          <End Role="Prepodavatel" Type="Self.Prepodavatel" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Sotrudnik">
-              <PropertyRef Name="TabNomer" />
-            </Principal>
-            <Dependent Role="Prepodavatel">
-              <PropertyRef Name="Tab_Nomer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Prepodavatel_Sotrudnik1">
-          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
-          <End Role="Prepodavatel" Type="Self.Prepodavatel" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Sotrudnik">
-              <PropertyRef Name="TabNomer" />
-            </Principal>
-            <Dependent Role="Prepodavatel">
-              <PropertyRef Name="Tab_Nomer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Zav_Kafedra_Sotrudnik">
-          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
-          <End Role="Zav_Kafedra" Type="Self.Zav_Kafedra" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Sotrudnik">
-              <PropertyRef Name="TabNomer" />
-            </Principal>
-            <Dependent Role="Zav_Kafedra">
-              <PropertyRef Name="TabNomer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -811,12 +772,12 @@
           <EntitySet Name="cveti_VashaFamilia" EntityType="Self.cveti_VashaFamilia" />
           <EntitySet Name="Disciplina" EntityType="Self.Disciplina" />
           <EntitySet Name="Engineer" EntityType="Self.Engineer" />
+          <EntitySet Name="Examen" EntityType="Self.Examen" />
           <EntitySet Name="Fakultet" EntityType="Self.Fakultet" />
           <EntitySet Name="Gimnazisty" EntityType="Self.Gimnazisty" />
           <EntitySet Name="Jivotnie_VashaFamilia" EntityType="Self.Jivotnie_VashaFamilia" />
           <EntitySet Name="Kafedra" EntityType="Self.Kafedra" />
           <EntitySet Name="Prepodavatel" EntityType="Self.Prepodavatel" />
-          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" />
           <EntitySet Name="Specialnost" EntityType="Self.Specialnost" />
           <EntitySet Name="strani" EntityType="Self.strani" />
           <EntitySet Name="Strani_VashaFamilia" EntityType="Self.Strani_VashaFamilia" />
@@ -832,37 +793,25 @@
             <End Role="Kafedra" EntitySet="Kafedra" />
             <End Role="Disciplina" EntitySet="Disciplina" />
           </AssociationSet>
+          <AssociationSet Name="FK_Examen_Disciplina" Association="Self.FK_Examen_Disciplina">
+            <End Role="Disciplina" EntitySet="Disciplina" />
+            <End Role="Examen" EntitySet="Examen" />
+          </AssociationSet>
           <AssociationSet Name="FK_Zayavka_Disciplina" Association="Self.FK_Zayavka_Disciplina">
             <End Role="Disciplina" EntitySet="Disciplina" />
             <End Role="Zayavka" EntitySet="Zayavka" />
           </AssociationSet>
-          <AssociationSet Name="FK_Engineer_Sotrudnik" Association="Self.FK_Engineer_Sotrudnik">
-            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
-            <End Role="Engineer" EntitySet="Engineer" />
+          <AssociationSet Name="FK_Examen_Prepodavatel" Association="Self.FK_Examen_Prepodavatel">
+            <End Role="Prepodavatel" EntitySet="Prepodavatel" />
+            <End Role="Examen" EntitySet="Examen" />
           </AssociationSet>
           <AssociationSet Name="FK_Kafedra_Fakultet" Association="Self.FK_Kafedra_Fakultet">
             <End Role="Fakultet" EntitySet="Fakultet" />
             <End Role="Kafedra" EntitySet="Kafedra" />
           </AssociationSet>
-          <AssociationSet Name="FK_Sotrudnik_Kafedra" Association="Self.FK_Sotrudnik_Kafedra">
-            <End Role="Kafedra" EntitySet="Kafedra" />
-            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
-          </AssociationSet>
           <AssociationSet Name="FK_Specialnost_Kafedra" Association="Self.FK_Specialnost_Kafedra">
             <End Role="Kafedra" EntitySet="Kafedra" />
             <End Role="Specialnost" EntitySet="Specialnost" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Prepodavatel_Sotrudnik" Association="Self.FK_Prepodavatel_Sotrudnik">
-            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
-            <End Role="Prepodavatel" EntitySet="Prepodavatel" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Prepodavatel_Sotrudnik1" Association="Self.FK_Prepodavatel_Sotrudnik1">
-            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
-            <End Role="Prepodavatel" EntitySet="Prepodavatel" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Zav_Kafedra_Sotrudnik" Association="Self.FK_Zav_Kafedra_Sotrudnik">
-            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
-            <End Role="Zav_Kafedra" EntitySet="Zav_Kafedra" />
           </AssociationSet>
           <AssociationSet Name="FK_Student_Specialnost" Association="Self.FK_Student_Specialnost">
             <End Role="Specialnost" EntitySet="Specialnost" />
@@ -872,15 +821,11 @@
             <End Role="Specialnost" EntitySet="Specialnost" />
             <End Role="Zayavka" EntitySet="Zayavka" />
           </AssociationSet>
-          <EntitySet Name="Examen" EntityType="UchebPratika_Model.Examen" />
           <EntitySet Name="Examen_Student" EntityType="UchebPratika_Model.Examen_Student" />
-          <AssociationSet Name="FK_Examen_Disciplina" Association="UchebPratika_Model.FK_Examen_Disciplina">
-            <End Role="Disciplina" EntitySet="Disciplina" />
-            <End Role="Examen" EntitySet="Examen" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Examen_Prepodavatel" Association="UchebPratika_Model.FK_Examen_Prepodavatel">
-            <End Role="Prepodavatel" EntitySet="Prepodavatel" />
-            <End Role="Examen" EntitySet="Examen" />
+          <EntitySet Name="Sotrudnik" EntityType="UchebPratika_Model.Sotrudnik" />
+          <AssociationSet Name="FK_Engineer_Sotrudnik" Association="UchebPratika_Model.FK_Engineer_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Engineer" EntitySet="Engineer" />
           </AssociationSet>
           <AssociationSet Name="FK_Examen_Student_Examen" Association="UchebPratika_Model.FK_Examen_Student_Examen">
             <End Role="Examen" EntitySet="Examen" />
@@ -890,52 +835,59 @@
             <End Role="Student" EntitySet="Student" />
             <End Role="Examen_Student" EntitySet="Examen_Student" />
           </AssociationSet>
+          <AssociationSet Name="FK_Sotrudnik_Kafedra" Association="UchebPratika_Model.FK_Sotrudnik_Kafedra">
+            <End Role="Kafedra" EntitySet="Kafedra" />
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prepodavatel_Sotrudnik" Association="UchebPratika_Model.FK_Prepodavatel_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Prepodavatel" EntitySet="Prepodavatel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prepodavatel_Sotrudnik1" Association="UchebPratika_Model.FK_Prepodavatel_Sotrudnik1">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Prepodavatel" EntitySet="Prepodavatel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zav_Kafedra_Sotrudnik" Association="UchebPratika_Model.FK_Zav_Kafedra_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Zav_Kafedra" EntitySet="Zav_Kafedra" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Examen">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ExamenDate" Type="DateTime" Precision="0" />
-          <Property Name="Disciplina_Kod" Type="Int32" />
-          <Property Name="Prepodovatel_TabNomer" Type="Int32" />
-          <Property Name="Auditoria" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Disciplina" Relationship="UchebPratika_Model.FK_Examen_Disciplina" FromRole="Examen" ToRole="Disciplina" />
-          <NavigationProperty Name="Prepodavatel" Relationship="UchebPratika_Model.FK_Examen_Prepodavatel" FromRole="Examen" ToRole="Prepodavatel" />
-          <NavigationProperty Name="Examen_Student" Relationship="UchebPratika_Model.FK_Examen_Student_Examen" FromRole="Examen" ToRole="Examen_Student" />
-        </EntityType>
         <EntityType Name="Examen_Student">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Examen_Id" Type="Int32" />
           <Property Name="Student_RegNomer" Type="Int32" />
           <Property Name="Ocenka" Type="Int32" />
           <NavigationProperty Name="Examen" Relationship="UchebPratika_Model.FK_Examen_Student_Examen" FromRole="Examen_Student" ToRole="Examen" />
           <NavigationProperty Name="Student" Relationship="UchebPratika_Model.FK_Examen_Student_Student" FromRole="Examen_Student" ToRole="Student" />
         </EntityType>
-        <Association Name="FK_Examen_Disciplina">
-          <End Type="UchebPratika_Model.Disciplina" Role="Disciplina" Multiplicity="0..1" />
-          <End Type="UchebPratika_Model.Examen" Role="Examen" Multiplicity="*" />
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="TabNomer" />
+          </Key>
+          <Property Name="TabNomer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kafedra_Shifr" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dolgnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zarplata" Type="Int32" />
+          <Property Name="Shef_Id" Type="Int32" />
+          <NavigationProperty Name="Engineer" Relationship="UchebPratika_Model.FK_Engineer_Sotrudnik" FromRole="Sotrudnik" ToRole="Engineer" />
+          <NavigationProperty Name="Kafedra" Relationship="UchebPratika_Model.FK_Sotrudnik_Kafedra" FromRole="Sotrudnik" ToRole="Kafedra" />
+          <NavigationProperty Name="Prepodavatel" Relationship="UchebPratika_Model.FK_Prepodavatel_Sotrudnik" FromRole="Sotrudnik" ToRole="Prepodavatel" />
+          <NavigationProperty Name="Prepodavatel1" Relationship="UchebPratika_Model.FK_Prepodavatel_Sotrudnik1" FromRole="Sotrudnik" ToRole="Prepodavatel" />
+          <NavigationProperty Name="Zav_Kafedra" Relationship="UchebPratika_Model.FK_Zav_Kafedra_Sotrudnik" FromRole="Sotrudnik" ToRole="Zav_Kafedra" />
+        </EntityType>
+        <Association Name="FK_Engineer_Sotrudnik">
+          <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="1" />
+          <End Type="UchebPratika_Model.Engineer" Role="Engineer" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Disciplina">
-              <PropertyRef Name="Kod" />
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="TabNomer" />
             </Principal>
-            <Dependent Role="Examen">
-              <PropertyRef Name="Disciplina_Kod" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Examen_Prepodavatel">
-          <End Type="UchebPratika_Model.Prepodavatel" Role="Prepodavatel" Multiplicity="0..1" />
-          <End Type="UchebPratika_Model.Examen" Role="Examen" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Prepodavatel">
-              <PropertyRef Name="Tab_Nomer" />
-            </Principal>
-            <Dependent Role="Examen">
-              <PropertyRef Name="Prepodovatel_TabNomer" />
+            <Dependent Role="Engineer">
+              <PropertyRef Name="TabNomer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -960,6 +912,54 @@
             </Principal>
             <Dependent Role="Examen_Student">
               <PropertyRef Name="Student_RegNomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudnik_Kafedra">
+          <End Type="UchebPratika_Model.Kafedra" Role="Kafedra" Multiplicity="0..1" />
+          <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kafedra">
+              <PropertyRef Name="Shifr" />
+            </Principal>
+            <Dependent Role="Sotrudnik">
+              <PropertyRef Name="Kafedra_Shifr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prepodavatel_Sotrudnik">
+          <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="1" />
+          <End Type="UchebPratika_Model.Prepodavatel" Role="Prepodavatel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="TabNomer" />
+            </Principal>
+            <Dependent Role="Prepodavatel">
+              <PropertyRef Name="Tab_Nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prepodavatel_Sotrudnik1">
+          <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="1" />
+          <End Type="UchebPratika_Model.Prepodavatel" Role="Prepodavatel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="TabNomer" />
+            </Principal>
+            <Dependent Role="Prepodavatel">
+              <PropertyRef Name="Tab_Nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zav_Kafedra_Sotrudnik">
+          <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="1" />
+          <End Type="UchebPratika_Model.Zav_Kafedra" Role="Zav_Kafedra" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="TabNomer" />
+            </Principal>
+            <Dependent Role="Zav_Kafedra">
+              <PropertyRef Name="TabNomer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1006,6 +1006,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Examen">
+            <EntityTypeMapping TypeName="UchebPratika_Model.Examen">
+              <MappingFragment StoreEntitySet="Examen">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ExamenDate" ColumnName="ExamenDate" />
+                <ScalarProperty Name="Disciplina_Kod" ColumnName="Disciplina_Kod" />
+                <ScalarProperty Name="Prepodovatel_TabNomer" ColumnName="Prepodovatel_TabNomer" />
+                <ScalarProperty Name="Auditoria" ColumnName="Auditoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Fakultet">
             <EntityTypeMapping TypeName="UchebPratika_Model.Fakultet">
               <MappingFragment StoreEntitySet="Fakultet">
@@ -1048,18 +1059,6 @@
                 <ScalarProperty Name="Tab_Nomer" ColumnName="Tab_Nomer" />
                 <ScalarProperty Name="Zvanie" ColumnName="Zvanie" />
                 <ScalarProperty Name="Stepen" ColumnName="Stepen" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sotrudnik">
-            <EntityTypeMapping TypeName="UchebPratika_Model.Sotrudnik">
-              <MappingFragment StoreEntitySet="Sotrudnik">
-                <ScalarProperty Name="TabNomer" ColumnName="TabNomer" />
-                <ScalarProperty Name="Kafedra_Shifr" ColumnName="Kafedra_Shifr" />
-                <ScalarProperty Name="Familia" ColumnName="Familia" />
-                <ScalarProperty Name="Dolgnost" ColumnName="Dolgnost" />
-                <ScalarProperty Name="Zarplata" ColumnName="Zarplata" />
-                <ScalarProperty Name="Shef_Id" ColumnName="Shef_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1168,17 +1167,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Examen">
-            <EntityTypeMapping TypeName="UchebPratika_Model.Examen">
-              <MappingFragment StoreEntitySet="Examen">
-                <ScalarProperty Name="Auditoria" ColumnName="Auditoria" />
-                <ScalarProperty Name="Prepodovatel_TabNomer" ColumnName="Prepodovatel_TabNomer" />
-                <ScalarProperty Name="Disciplina_Kod" ColumnName="Disciplina_Kod" />
-                <ScalarProperty Name="ExamenDate" ColumnName="ExamenDate" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Examen_Student">
             <EntityTypeMapping TypeName="UchebPratika_Model.Examen_Student">
               <MappingFragment StoreEntitySet="Examen_Student">
@@ -1186,6 +1174,18 @@
                 <ScalarProperty Name="Student_RegNomer" ColumnName="Student_RegNomer" />
                 <ScalarProperty Name="Examen_Id" ColumnName="Examen_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudnik">
+            <EntityTypeMapping TypeName="UchebPratika_Model.Sotrudnik">
+              <MappingFragment StoreEntitySet="Sotrudnik">
+                <ScalarProperty Name="Shef_Id" ColumnName="Shef_Id" />
+                <ScalarProperty Name="Zarplata" ColumnName="Zarplata" />
+                <ScalarProperty Name="Dolgnost" ColumnName="Dolgnost" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Kafedra_Shifr" ColumnName="Kafedra_Shifr" />
+                <ScalarProperty Name="TabNomer" ColumnName="TabNomer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

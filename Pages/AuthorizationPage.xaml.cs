@@ -61,6 +61,9 @@ namespace UchebPrak.Pages
                 case "преподаватель":
                     App.MainFrame.Navigate(new ExamList());
                     break;
+                case "инженер":
+                    App.MainFrame.Navigate(new SotrudnilListPage());
+                    break;
                 case "":
                     break;
             }

@@ -22,12 +22,11 @@ namespace UchebPrak.Components
     {
         private Examen_Student examen_student;
 
-        public StudentUserControl(Examen_Student examen_student, bool isNew = false)
+        public StudentUserControl(Examen_Student examen_student)
         {
             InitializeComponent();
             this.examen_student = examen_student;
             DataContext = examen_student;
-            if(!isNew) EnterBtn.Visibility = Visibility.Hidden;
         }
 
         private void EnterBtn_Click(object sender, RoutedEventArgs e)
@@ -37,7 +36,21 @@ namespace UchebPrak.Components
 
         private void OcenkaTb_TextChanged(object sender, TextChangedEventArgs e)
         {
-            examen_student.Ocenka = int.Parse((sender as TextBox).Text);
+            if ((sender as TextBox).Text.Length > 0)
+            {
+                examen_student.Ocenka = int.Parse((sender as TextBox).Text);
+            }
+            else
+                examen_student.Ocenka = null;
+            App.db.SaveChanges();
+        }
+
+        private void OcenkaTbPreviewInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text[0]) || int.Parse(e.Text) < 1 || int.Parse(e.Text) > 5)
+            {
+                e.Handled = true;
+            }     
         }
     }
 }
