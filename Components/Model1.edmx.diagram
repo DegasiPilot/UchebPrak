@@ -35,13 +35,12 @@
         <AssociationConnector Association="UchebPratika_Model.FK_Student_Specialnost" ManuallyRouted="false" />
         <AssociationConnector Association="UchebPratika_Model.FK_Zayavka_Specialnost" ManuallyRouted="false" />
         <EntityTypeShape EntityType="UchebPratika_Model.Examen_Student" Width="1.5" PointX="13" PointY="9.625" />
-        <EntityTypeShape EntityType="UchebPratika_Model.Sotrudnik" Width="1.5" PointX="5.25" PointY="8" />
-        <AssociationConnector Association="UchebPratika_Model.FK_Engineer_Sotrudnik" />
         <AssociationConnector Association="UchebPratika_Model.FK_Examen_Student_Examen" />
         <AssociationConnector Association="UchebPratika_Model.FK_Examen_Student_Student" />
+        <EntityTypeShape EntityType="UchebPratika_Model.Sotrudnik" Width="1.5" PointX="5.25" PointY="8.125" />
+        <AssociationConnector Association="UchebPratika_Model.FK_Engineer_Sotrudnik" />
         <AssociationConnector Association="UchebPratika_Model.FK_Sotrudnik_Kafedra" />
         <AssociationConnector Association="UchebPratika_Model.FK_Prepodavatel_Sotrudnik" />
-        <AssociationConnector Association="UchebPratika_Model.FK_Prepodavatel_Sotrudnik1" />
         <AssociationConnector Association="UchebPratika_Model.FK_Zav_Kafedra_Sotrudnik" />
       </Diagram>
     </edmx:Diagrams>

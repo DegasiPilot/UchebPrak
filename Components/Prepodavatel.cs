@@ -27,6 +27,5 @@ namespace UchebPrak.Components
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Examen> Examen { get; set; }
         public virtual Sotrudnik Sotrudnik { get; set; }
-        public virtual Sotrudnik Sotrudnik1 { get; set; }
     }
 }

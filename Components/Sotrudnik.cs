@@ -24,7 +24,6 @@ namespace UchebPrak.Components
         public virtual Engineer Engineer { get; set; }
         public virtual Kafedra Kafedra { get; set; }
         public virtual Prepodavatel Prepodavatel { get; set; }
-        public virtual Prepodavatel Prepodavatel1 { get; set; }
         public virtual Zav_Kafedra Zav_Kafedra { get; set; }
     }
 }

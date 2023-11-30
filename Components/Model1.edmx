@@ -215,7 +215,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Engineer_Sotrudnik">
-          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Engineer" Type="Self.Engineer" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Sotrudnik">
@@ -287,19 +289,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Prepodavatel_Sotrudnik">
-          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
-          <End Role="Prepodavatel" Type="Self.Prepodavatel" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Sotrudnik">
-              <PropertyRef Name="TabNomer" />
-            </Principal>
-            <Dependent Role="Prepodavatel">
-              <PropertyRef Name="Tab_Nomer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Prepodavatel_Sotrudnik1">
-          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Prepodavatel" Type="Self.Prepodavatel" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Sotrudnik">
@@ -347,7 +339,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Zav_Kafedra_Sotrudnik">
-          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Zav_Kafedra" Type="Self.Zav_Kafedra" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Sotrudnik">
@@ -435,10 +429,6 @@
             <End Role="Kafedra" EntitySet="Kafedra" />
           </AssociationSet>
           <AssociationSet Name="FK_Prepodavatel_Sotrudnik" Association="Self.FK_Prepodavatel_Sotrudnik">
-            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
-            <End Role="Prepodavatel" EntitySet="Prepodavatel" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Prepodavatel_Sotrudnik1" Association="Self.FK_Prepodavatel_Sotrudnik1">
             <End Role="Sotrudnik" EntitySet="Sotrudnik" />
             <End Role="Prepodavatel" EntitySet="Prepodavatel" />
           </AssociationSet>
@@ -567,7 +557,6 @@
           <Property Name="Stepen" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Examen" Relationship="Self.FK_Examen_Prepodavatel" FromRole="Prepodavatel" ToRole="Examen" />
           <NavigationProperty Name="Sotrudnik" Relationship="UchebPratika_Model.FK_Prepodavatel_Sotrudnik" FromRole="Prepodavatel" ToRole="Sotrudnik" />
-          <NavigationProperty Name="Sotrudnik1" Relationship="UchebPratika_Model.FK_Prepodavatel_Sotrudnik1" FromRole="Prepodavatel" ToRole="Sotrudnik" />
         </EntityType>
         <EntityType Name="Specialnost">
           <Key>
@@ -822,11 +811,6 @@
             <End Role="Zayavka" EntitySet="Zayavka" />
           </AssociationSet>
           <EntitySet Name="Examen_Student" EntityType="UchebPratika_Model.Examen_Student" />
-          <EntitySet Name="Sotrudnik" EntityType="UchebPratika_Model.Sotrudnik" />
-          <AssociationSet Name="FK_Engineer_Sotrudnik" Association="UchebPratika_Model.FK_Engineer_Sotrudnik">
-            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
-            <End Role="Engineer" EntitySet="Engineer" />
-          </AssociationSet>
           <AssociationSet Name="FK_Examen_Student_Examen" Association="UchebPratika_Model.FK_Examen_Student_Examen">
             <End Role="Examen" EntitySet="Examen" />
             <End Role="Examen_Student" EntitySet="Examen_Student" />
@@ -834,6 +818,11 @@
           <AssociationSet Name="FK_Examen_Student_Student" Association="UchebPratika_Model.FK_Examen_Student_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="Examen_Student" EntitySet="Examen_Student" />
+          </AssociationSet>
+          <EntitySet Name="Sotrudnik" EntityType="UchebPratika_Model.Sotrudnik" />
+          <AssociationSet Name="FK_Engineer_Sotrudnik" Association="UchebPratika_Model.FK_Engineer_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Engineer" EntitySet="Engineer" />
           </AssociationSet>
           <AssociationSet Name="FK_Sotrudnik_Kafedra" Association="UchebPratika_Model.FK_Sotrudnik_Kafedra">
             <End Role="Kafedra" EntitySet="Kafedra" />
@@ -843,15 +832,11 @@
             <End Role="Sotrudnik" EntitySet="Sotrudnik" />
             <End Role="Prepodavatel" EntitySet="Prepodavatel" />
           </AssociationSet>
-          <AssociationSet Name="FK_Prepodavatel_Sotrudnik1" Association="UchebPratika_Model.FK_Prepodavatel_Sotrudnik1">
-            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
-            <End Role="Prepodavatel" EntitySet="Prepodavatel" />
-          </AssociationSet>
           <AssociationSet Name="FK_Zav_Kafedra_Sotrudnik" Association="UchebPratika_Model.FK_Zav_Kafedra_Sotrudnik">
             <End Role="Sotrudnik" EntitySet="Sotrudnik" />
             <End Role="Zav_Kafedra" EntitySet="Zav_Kafedra" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Examen_Student">
           <Key>
             <PropertyRef Name="Id" />
@@ -863,34 +848,6 @@
           <NavigationProperty Name="Examen" Relationship="UchebPratika_Model.FK_Examen_Student_Examen" FromRole="Examen_Student" ToRole="Examen" />
           <NavigationProperty Name="Student" Relationship="UchebPratika_Model.FK_Examen_Student_Student" FromRole="Examen_Student" ToRole="Student" />
         </EntityType>
-        <EntityType Name="Sotrudnik">
-          <Key>
-            <PropertyRef Name="TabNomer" />
-          </Key>
-          <Property Name="TabNomer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Kafedra_Shifr" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-          <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Dolgnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Zarplata" Type="Int32" />
-          <Property Name="Shef_Id" Type="Int32" />
-          <NavigationProperty Name="Engineer" Relationship="UchebPratika_Model.FK_Engineer_Sotrudnik" FromRole="Sotrudnik" ToRole="Engineer" />
-          <NavigationProperty Name="Kafedra" Relationship="UchebPratika_Model.FK_Sotrudnik_Kafedra" FromRole="Sotrudnik" ToRole="Kafedra" />
-          <NavigationProperty Name="Prepodavatel" Relationship="UchebPratika_Model.FK_Prepodavatel_Sotrudnik" FromRole="Sotrudnik" ToRole="Prepodavatel" />
-          <NavigationProperty Name="Prepodavatel1" Relationship="UchebPratika_Model.FK_Prepodavatel_Sotrudnik1" FromRole="Sotrudnik" ToRole="Prepodavatel" />
-          <NavigationProperty Name="Zav_Kafedra" Relationship="UchebPratika_Model.FK_Zav_Kafedra_Sotrudnik" FromRole="Sotrudnik" ToRole="Zav_Kafedra" />
-        </EntityType>
-        <Association Name="FK_Engineer_Sotrudnik">
-          <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="1" />
-          <End Type="UchebPratika_Model.Engineer" Role="Engineer" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Sotrudnik">
-              <PropertyRef Name="TabNomer" />
-            </Principal>
-            <Dependent Role="Engineer">
-              <PropertyRef Name="TabNomer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Examen_Student_Examen">
           <End Type="UchebPratika_Model.Examen" Role="Examen" Multiplicity="0..1" />
           <End Type="UchebPratika_Model.Examen_Student" Role="Examen_Student" Multiplicity="*" />
@@ -915,6 +872,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="TabNomer" />
+          </Key>
+          <Property Name="TabNomer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kafedra_Shifr" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dolgnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zarplata" Type="Int32" />
+          <Property Name="Shef_Id" Type="Int32" />
+          <NavigationProperty Name="Engineer" Relationship="UchebPratika_Model.FK_Engineer_Sotrudnik" FromRole="Sotrudnik" ToRole="Engineer" />
+          <NavigationProperty Name="Kafedra" Relationship="UchebPratika_Model.FK_Sotrudnik_Kafedra" FromRole="Sotrudnik" ToRole="Kafedra" />
+          <NavigationProperty Name="Prepodavatel" Relationship="UchebPratika_Model.FK_Prepodavatel_Sotrudnik" FromRole="Sotrudnik" ToRole="Prepodavatel" />
+          <NavigationProperty Name="Zav_Kafedra" Relationship="UchebPratika_Model.FK_Zav_Kafedra_Sotrudnik" FromRole="Sotrudnik" ToRole="Zav_Kafedra" />
+        </EntityType>
+        <Association Name="FK_Engineer_Sotrudnik">
+          <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="UchebPratika_Model.Engineer" Role="Engineer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="TabNomer" />
+            </Principal>
+            <Dependent Role="Engineer">
+              <PropertyRef Name="TabNomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sotrudnik_Kafedra">
           <End Type="UchebPratika_Model.Kafedra" Role="Kafedra" Multiplicity="0..1" />
           <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="*" />
@@ -928,19 +914,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Prepodavatel_Sotrudnik">
-          <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="1" />
-          <End Type="UchebPratika_Model.Prepodavatel" Role="Prepodavatel" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Sotrudnik">
-              <PropertyRef Name="TabNomer" />
-            </Principal>
-            <Dependent Role="Prepodavatel">
-              <PropertyRef Name="Tab_Nomer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Prepodavatel_Sotrudnik1">
-          <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="1" />
+          <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="UchebPratika_Model.Prepodavatel" Role="Prepodavatel" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Sotrudnik">
@@ -952,7 +928,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Zav_Kafedra_Sotrudnik">
-          <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="1" />
+          <End Type="UchebPratika_Model.Sotrudnik" Role="Sotrudnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="UchebPratika_Model.Zav_Kafedra" Role="Zav_Kafedra" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Sotrudnik">
@@ -963,7 +941,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
