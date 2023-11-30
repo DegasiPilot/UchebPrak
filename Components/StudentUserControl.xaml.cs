@@ -29,11 +29,6 @@ namespace UchebPrak.Components
             DataContext = examen_student;
         }
 
-        private void EnterBtn_Click(object sender, RoutedEventArgs e)
-        {
-            App.db.SaveChanges();
-        }
-
         private void OcenkaTb_TextChanged(object sender, TextChangedEventArgs e)
         {
             if ((sender as TextBox).Text.Length > 0)

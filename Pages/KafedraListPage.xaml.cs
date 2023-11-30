@@ -17,35 +17,23 @@ using UchebPrak.Components;
 namespace UchebPrak.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для SotrudnilListPage.xaml
+    /// Логика взаимодействия для KafedraListPage.xaml
     /// </summary>
-    public partial class SotrudnilListPage : Page
+    public partial class KafedraListPage : Page
     {
-        public static WrapPanel SotrydniksWrapPanell;
-
-        public SotrudnilListPage()
+        public KafedraListPage()
         {
             InitializeComponent();
-            foreach (Sotrudnik sotrudnik in App.db.Sotrudnik.ToArray())
-            {
-                SotrudniksWp.Children.Add(new SotrudnikUserControl(sotrudnik));
-            }
-            SotrydniksWrapPanell = SotrudniksWp;
         }
 
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
-        {
-            App.MainFrame.Navigate(new AddEditSotrudnikPage(new Sotrudnik()));
-        }
-
-        private void FamiliaSortCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void KafedraSortCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Filter();
         }
 
         private void Filter()
         {
-            Sotrudnik[] sotrudniks = App.db.Sotrudnik.ToArray();
+            Kafedra[] Kafedras = App.db.Kafedra.ToArray();
             switch (FamiliaSortCb.SelectedIndex)
             {
                 case 0:
@@ -75,16 +63,6 @@ namespace UchebPrak.Pages
             {
                 SotrudniksWp.Children.Add(new SotrudnikUserControl(sotrudnik));
             }
-        }
-
-        private void ZarplataSortCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Filter();
-        }
-
-        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Filter();
         }
     }
 }
