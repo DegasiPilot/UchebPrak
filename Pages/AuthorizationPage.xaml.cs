@@ -45,6 +45,7 @@ namespace UchebPrak.Pages
             else
             {
                 MessageBox.Show("Вы вошли как гость!");
+                EnterAs("гость");
             }
         }
 
@@ -63,6 +64,9 @@ namespace UchebPrak.Pages
                     break;
                 case "инженер":
                     App.MainFrame.Navigate(new SotrudnilListPage());
+                    break;
+                case "гость":
+                    App.MainFrame.Navigate(new DisciplinaListPage());
                     break;
                 case "":
                     break;

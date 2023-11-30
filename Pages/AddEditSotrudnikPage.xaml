@@ -28,12 +28,12 @@
                 <ComboBox x:Name="DolgnostCb" Width="120" Margin="5 0 0 0" SelectionChanged="DolgnostCb_SelectionChanged"></ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
-                <TextBlock>Зарпалата</TextBlock>
+                <TextBlock>Зарплата</TextBlock>
                 <TextBox x:Name="ZarplataTb" Width="120" Text="{Binding Zarplata}" Margin="5 0 0 0" PreviewTextInput="ZarplataPreviewInput"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
                 <TextBlock>Таб. номер шефа</TextBlock>
-                <ComboBox x:Name="ShefCb" Width="120" Text="{Binding Shef_Id}" Margin="5 0 0 0"></ComboBox>
+                <ComboBox x:Name="ShefCb" Width="120" DisplayMemberPath="TabNomer" Margin="5 0 0 0"></ComboBox>
             </StackPanel>
             <Button x:Name="EnterBtn" Margin="0 15 0 0" Width="100" Click="EnterBtn_Click">Сохранить</Button>
         </StackPanel>

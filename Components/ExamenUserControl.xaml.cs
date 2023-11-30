@@ -34,11 +34,45 @@ namespace UchebPrak.Components
             {
                 StudentsWp.Children.Add(new StudentUserControl(e_s));
             }
+            FamiliaSortCb.SelectedIndex = 0;
         }
 
         private void AddStudent_Click(object sender, RoutedEventArgs e)
         {
             App.MainFrame.Navigate(new AddStudentPage(examen));
+        }
+
+        private void FamiliaSortCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter(); 
+        }
+
+        private void Filter()
+        {
+            Examen_Student[] examen_student = App.db.Examen_Student.Where(x => x.Examen_Id == examen.Id).ToArray();
+            switch (FamiliaSortCb.SelectedIndex)
+            {
+                case 0:
+                    break;
+                case 1:
+                    examen_student = examen_student.OrderBy(x => x.Student.Familia).ToArray();
+                    break;
+                case 2:
+                    examen_student = examen_student.OrderByDescending(x => x.Student.Familia).ToArray();
+                    break;
+            }
+            if(SearchTb.Text != "")
+                examen_student = examen_student.Where(x => x.Student.Familia.ToLower().Contains(SearchTb.Text.ToLower())).ToArray();
+            StudentsWp.Children.Clear();
+            foreach (Examen_Student e_s in examen_student)
+            {
+                StudentsWp.Children.Add(new StudentUserControl(e_s));
+            }
+        }
+
+        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filter();
         }
     }
 }

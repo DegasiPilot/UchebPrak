@@ -35,5 +35,11 @@ namespace UchebPrak.Components
         {
             App.MainFrame.Navigate(new AddEditSotrudnikPage(sotrudnik));
         }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.db.Sotrudnik.Remove(sotrudnik);
+            SotrudnilListPage.SotrydniksWrapPanell.Children.Remove(this);
+        }
     }
 }

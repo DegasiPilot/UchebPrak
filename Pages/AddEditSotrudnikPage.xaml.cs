@@ -22,27 +22,42 @@ namespace UchebPrak.Pages
     public partial class AddEditSotrudnikPage : Page
     {
         private Sotrudnik sotrudnik;
+        private Zav_Kafedra zav_Kafedra;
+        private bool isNew;
 
         public AddEditSotrudnikPage(Sotrudnik sotrudnik)
         {
             InitializeComponent();
             this.sotrudnik = sotrudnik;
             DataContext = this.sotrudnik;
-            KafedraCb.ItemsSource = App.db.Kafedra.ToArray();
-            KafedraCb.SelectedItem = sotrudnik.Kafedra;
-            DolgnostCb.ItemsSource = App.db.Sotrudnik.ToArray().Select(x => x.Dolgnost).Distinct();
-            DolgnostCb.SelectedItem = sotrudnik.Dolgnost;
+            isNew = !App.db.Sotrudnik.Any(x => x.TabNomer == sotrudnik.TabNomer);
             ShefCb.ItemsSource = App.db.Zav_Kafedra.ToArray();
-            ShefCb.SelectedItem = sotrudnik.Zav_Kafedra;
+            KafedraCb.ItemsSource = App.db.Kafedra.ToArray();
+            DolgnostCb.ItemsSource = App.db.Sotrudnik.ToArray().Select(x => x.Dolgnost).Distinct();
+            if (!isNew)
+            {
+            KafedraCb.SelectedItem = sotrudnik.Kafedra;
+            DolgnostCb.SelectedItem = sotrudnik.Dolgnost;
+            ShefCb.SelectedItem = App.db.Zav_Kafedra.First(x => x.TabNomer == sotrudnik.Shef_Id);
+            }
         }
 
         private void EnterBtn_Click(object sender, RoutedEventArgs e)
         {
             if (CheckBlank())
             {
-                if (!App.db.Sotrudnik.Any(x => x.TabNomer == sotrudnik.TabNomer))
+                sotrudnik.Kafedra_Shifr = KafedraCb.Text;
+                sotrudnik.Familia = FamiliaTb.Text;
+                sotrudnik.Dolgnost = DolgnostCb.Text;
+                sotrudnik.Zarplata = int.Parse(ZarplataTb.Text);
+                sotrudnik.Shef_Id = int.Parse(ShefCb.Text);
+
+                if (isNew)
                     App.db.Sotrudnik.Add(sotrudnik);
+                if(zav_Kafedra != null)
+                    App.db.Zav_Kafedra.Add(zav_Kafedra);
                 App.db.SaveChanges();
+                App.MainFrame.Navigate(new SotrudnilListPage());
             }
         }
 
@@ -61,7 +76,10 @@ namespace UchebPrak.Pages
                 errors.AppendLine("Выберите шефа");
 
             if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
                 return false;
+            }
             else
                 return true;
         }
@@ -83,9 +101,8 @@ namespace UchebPrak.Pages
             if ((sender as ComboBox).SelectedItem.ToString() == "зав. кафедрой")
             {
                 ShefCb.IsEnabled = false;
-                Zav_Kafedra zav_Kafedra = new Zav_Kafedra();
+                zav_Kafedra = new Zav_Kafedra();
                 zav_Kafedra.TabNomer = sotrudnik.TabNomer;
-                App.db.Zav_Kafedra.Add(zav_Kafedra);
                 ShefCb.ItemsSource = App.db.Zav_Kafedra.ToArray();
                 ShefCb.SelectedItem = zav_Kafedra;
                 sotrudnik.Shef_Id = sotrudnik.TabNomer;
@@ -95,8 +112,9 @@ namespace UchebPrak.Pages
                 ShefCb.IsEnabled = true;
                 if (App.db.Zav_Kafedra.Any(x => x.TabNomer == sotrudnik.TabNomer))
                 {
-                    Zav_Kafedra zav_Kafedra = App.db.Zav_Kafedra.First(x => x.TabNomer == sotrudnik.TabNomer);
+                    zav_Kafedra = App.db.Zav_Kafedra.First(x => x.TabNomer == sotrudnik.TabNomer);
                     App.db.Zav_Kafedra.Remove(zav_Kafedra);
+                    zav_Kafedra = null;
                     ShefCb.ItemsSource = App.db.Zav_Kafedra.ToArray();
                     ShefCb.SelectedItem = null;
                     sotrudnik.Shef_Id = null;

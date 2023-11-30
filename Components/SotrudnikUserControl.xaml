@@ -5,35 +5,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UchebPrak.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="200">
-    <Grid Width="200">
+             d:DesignHeight="450" d:DesignWidth="400">
+    <Grid>
         <Border BorderBrush="Black" BorderThickness="1" Margin="5">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock>Таб. номер</TextBlock>
-                    <TextBlock Text="{Binding TabNomer}" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock>Таб. номер:</TextBlock>
+                    <TextBlock Text="{Binding TabNomer}" Margin="5 0 0 0" Width="150"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock>Кафедра шифр</TextBlock>
-                    <TextBlock Text="{Binding Kafedra_Shifr}" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock>Кафедра шифр:</TextBlock>
+                    <TextBlock Text="{Binding Kafedra_Shifr}" Margin="5 0 0 0" Width="150"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock>Фамилия</TextBlock>
-                    <TextBlock Text="{Binding Familia}" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock>Фамилия:</TextBlock>
+                    <TextBlock Text="{Binding Familia}" Margin="5 0 0 0" Width="150"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock>Должность</TextBlock>
-                    <TextBlock Text="{Binding Dolgnost}" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock>Должность:</TextBlock>
+                    <TextBlock Text="{Binding Dolgnost}" Margin="5 0 0 0" Width="150"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock>Зарпалата</TextBlock>
-                    <TextBlock Text="{Binding Zarplata}" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock>Зарпалата:</TextBlock>
+                    <TextBlock Text="{Binding Zarplata}" Margin="5 0 0 0" Width="150"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock>Таб. номер шефа</TextBlock>
-                    <TextBlock Text="{Binding Shef_Id}" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock>Таб. номер шефа:</TextBlock>
+                    <TextBlock Text="{Binding Shef_Id}" Margin="5 0 0 0" Width="150"></TextBlock>
                 </StackPanel>
                 <Button x:Name="RedactBtn" Margin="0 10 0 0" Click="RedactBtn_Click">Редактировать</Button>
+                <Button x:Name="DeleteBtn" Margin="0 5 0 0" Click="DeleteBtn_Click">Удалить</Button>
             </StackPanel>
         </Border>
     </Grid>

@@ -21,6 +21,8 @@ namespace UchebPrak.Pages
     /// </summary>
     public partial class SotrudnilListPage : Page
     {
+        public static WrapPanel SotrydniksWrapPanell;
+
         public SotrudnilListPage()
         {
             InitializeComponent();
@@ -28,6 +30,12 @@ namespace UchebPrak.Pages
             {
                 SotrudniksWp.Children.Add(new SotrudnikUserControl(sotrudnik));
             }
+            SotrydniksWrapPanell = SotrudniksWp;
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.MainFrame.Navigate(new AddEditSotrudnikPage(new Sotrudnik()));
         }
     }
 }
