@@ -86,6 +86,8 @@ namespace UchebPrak.Pages
                 errors.AppendLine("Выберите должность");
             if (ZarplataTb.Text == "")
                 errors.AppendLine("Введите зарплату");
+            else if (int.Parse(ZarplataTb.Text) == 0)
+                errors.AppendLine("Зарплата должна быть больше 0!!!");
             if (ShefCb.SelectedItem == null && zav_Kafedra == null)
                 errors.AppendLine("Выберите шефа");
 
