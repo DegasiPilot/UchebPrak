@@ -36,9 +36,10 @@ namespace UchebPrak.Pages
             DolgnostCb.ItemsSource = App.db.Sotrudnik.ToArray().Select(x => x.Dolgnost).Distinct();
             if (!isNew)
             {
-            KafedraCb.SelectedItem = sotrudnik.Kafedra;
-            DolgnostCb.SelectedItem = sotrudnik.Dolgnost;
-            ShefCb.SelectedItem = App.db.Zav_Kafedra.First(x => x.TabNomer == sotrudnik.Shef_Id);
+                TabNomerTb.IsReadOnly = true;
+                KafedraCb.SelectedItem = sotrudnik.Kafedra;
+                DolgnostCb.SelectedItem = sotrudnik.Dolgnost;
+                ShefCb.SelectedItem = App.db.Zav_Kafedra.First(x => x.TabNomer == sotrudnik.Shef_Id);
             }
         }
 
@@ -52,8 +53,13 @@ namespace UchebPrak.Pages
                 sotrudnik.Zarplata = int.Parse(ZarplataTb.Text);
                 sotrudnik.Shef_Id = int.Parse(ShefCb.Text);
 
-                if (isNew)
+                if (isNew || !App.db.Sotrudnik.Any(x => x.TabNomer == sotrudnik.TabNomer))
                     App.db.Sotrudnik.Add(sotrudnik);
+                else
+                {
+                    MessageBox.Show("Сотрудник с таким таб. номером уже существует!");
+                    return;
+                }
                 if(zav_Kafedra != null)
                     App.db.Zav_Kafedra.Add(zav_Kafedra);
                 App.db.SaveChanges();

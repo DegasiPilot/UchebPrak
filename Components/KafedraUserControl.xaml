@@ -21,7 +21,7 @@
                     <TextBlock>Факультет:</TextBlock>
                     <TextBox IsReadOnly="True" Text="{Binding Fakultet_Abbr}" Margin="5 0 0 0" Width="100"></TextBox>
                 </StackPanel>
-                <Button Margin="0 15 0 0" Width="120" Click="Button_Click">Редактировать</Button>
+                <Button Margin="0 15 0 0" Width="120" x:Name="EditBtn" Click="EditBtn_Click">Редактировать</Button>
             </StackPanel>
         </Border>
     </Grid>

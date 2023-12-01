@@ -33,36 +33,30 @@ namespace UchebPrak.Pages
 
         private void Filter()
         {
-            Kafedra[] Kafedras = App.db.Kafedra.ToArray();
-            switch (FamiliaSortCb.SelectedIndex)
+            Kafedra[] kafedras = App.db.Kafedra.ToArray();
+            switch (KafedraSortCb.SelectedIndex)
             {
                 case 0:
                     break;
                 case 1:
-                    sotrudniks = sotrudniks.OrderBy(x => x.Familia).ToArray();
+                    kafedras = kafedras.OrderBy(x => x.Nazvanie).ToArray();
                     break;
                 case 2:
-                    sotrudniks = sotrudniks.OrderByDescending(x => x.Familia).ToArray();
-                    break;
-            }
-            switch (ZarplataSortCb.SelectedIndex)
-            {
-                case 0:
-                    break;
-                case 1:
-                    sotrudniks = sotrudniks.OrderBy(x => x.Zarplata).ToArray();
-                    break;
-                case 2:
-                    sotrudniks = sotrudniks.OrderByDescending(x => x.Zarplata).ToArray();
+                    kafedras = kafedras.OrderByDescending(x => x.Nazvanie).ToArray();
                     break;
             }
             if (SearchTb.Text != "")
-                sotrudniks = sotrudniks.Where(x => x.Familia.ToLower().Contains(SearchTb.Text.ToLower())).ToArray();
-            SotrudniksWp.Children.Clear();
-            foreach (Sotrudnik sotrudnik in sotrudniks)
+                kafedras = kafedras.Where(x => x.Nazvanie.ToLower().Contains(SearchTb.Text.ToLower())).ToArray();
+            KafedrasWp.Children.Clear();
+            foreach (Kafedra kafedra in kafedras)
             {
-                SotrudniksWp.Children.Add(new SotrudnikUserControl(sotrudnik));
+                KafedrasWp.Children.Add(new KafedraUserControl(kafedra));
             }
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.MainFrame.Navigate(new AddEditKafedraPage(new Kafedra()));
         }
     }
 }

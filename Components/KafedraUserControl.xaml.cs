@@ -13,17 +13,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using UchebPrak.Pages;
+
 namespace UchebPrak.Components
 {
-    /// <summary>
-    /// Логика взаимодействия для KafedraUserControl.xaml
-    /// </summary>
     public partial class KafedraUserControl : UserControl
     {
+        private Kafedra kafedra;
+
         public KafedraUserControl(Kafedra kafedra)
         {
             InitializeComponent();
+            this.kafedra = kafedra;
             DataContext = kafedra;
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.MainFrame.Navigate(new AddEditKafedraPage(kafedra));
         }
     }
 }

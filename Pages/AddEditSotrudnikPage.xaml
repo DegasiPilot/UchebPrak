@@ -13,7 +13,7 @@
             <TextBlock FontSize="18" TextAlignment="Center">Сотрудник</TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 15 0 0">
                 <TextBlock>Таб. номер</TextBlock>
-                <TextBox Width="120" Text="{Binding TabNomer}" Margin="5 0 0 0" IsReadOnly="True"></TextBox>
+                <TextBox x:Name="TabNomerTb" Width="120" Text="{Binding TabNomer}" Margin="5 0 0 0"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
                 <TextBlock>Кафедра шифр</TextBlock>
