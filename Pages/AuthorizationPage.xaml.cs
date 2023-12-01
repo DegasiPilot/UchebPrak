@@ -59,6 +59,9 @@ namespace UchebPrak.Pages
         {
             switch (role)
             {
+                case "зав. кафедрой":
+                    App.MainFrame.Navigate(new KafedraListPage());
+                    break;
                 case "преподаватель":
                     App.MainFrame.Navigate(new ExamList());
                     break;

@@ -27,5 +27,10 @@ namespace UchebPrak
             App.MainFrame = MainFrame;
             MainFrame.Navigate(new AuthorizationPage());
         }
+
+        private void ExitUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new AuthorizationPage());
+        }
     }
 }

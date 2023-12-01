@@ -12,7 +12,7 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock>Шифр:</TextBlock>
-                <TextBox x:Name="ShifrTb" Text="{Binding Shifr}" Margin="5 0 0 0" Width="100"></TextBox>
+                <TextBox MaxLength="2" x:Name="ShifrTb" Text="{Binding Shifr}" Margin="5 0 0 0" Width="100" PreviewTextInput="ShifrPreviewInput"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
                 <TextBlock>Название:</TextBlock>

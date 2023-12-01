@@ -15,7 +15,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
                     <TextBlock>Название:</TextBlock>
-                    <TextBox IsReadOnly="True" Text="{Binding Nazvanie}" Margin="5 0 0 0" Width="100"></TextBox>
+                    <TextBox TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Nazvanie}" Margin="5 0 0 0" Width="100"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
                     <TextBlock>Факультет:</TextBlock>

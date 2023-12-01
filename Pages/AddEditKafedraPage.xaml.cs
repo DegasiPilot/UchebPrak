@@ -30,7 +30,7 @@ namespace UchebPrak.Pages
             InitializeComponent();
             this.kafedra = kafedra;
             DataContext = kafedra;
-            isNew = kafedra.Shifr == "";
+            isNew = (kafedra.Shifr == null);
             FakultetCb.ItemsSource = App.db.Fakultet.ToArray();
             if (!isNew)
             {
@@ -66,18 +66,26 @@ namespace UchebPrak.Pages
                 kafedra.Nazvanie = NazvanieTb.Text;
                 kafedra.Fakultet_Abbr = FakultetCb.Text;
 
-                if (isNew || !App.db.Kafedra.Any(x => x.shifr == kafedra.Shifr))
+                if (isNew)
                 {
-                    App.db.Kafedra.Add(kafedra);
+                    if(!App.db.Kafedra.Any(x => x.Shifr == kafedra.Shifr))
+                        App.db.Kafedra.Add(kafedra);
+                    else
+                    {
+                        MessageBox.Show("Кафедра с таким шифром уже существует!");
+                        return;
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Кафедра с таким шифром уже существует!");
-                    return;
-                }
+
                 App.db.SaveChanges();
                 App.MainFrame.Navigate(new KafedraListPage());
             }
+        }
+
+        private void ShifrPreviewInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsLetter(e.Text[0]))
+                e.Handled = true;
         }
     }
 }

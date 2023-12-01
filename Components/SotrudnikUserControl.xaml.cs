@@ -40,6 +40,7 @@ namespace UchebPrak.Components
         {
             App.db.Sotrudnik.Remove(sotrudnik);
             SotrudnilListPage.SotrydniksWrapPanell.Children.Remove(this);
+            App.db.SaveChanges();
         }
     }
 }

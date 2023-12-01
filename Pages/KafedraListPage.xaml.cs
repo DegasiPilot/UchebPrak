@@ -24,6 +24,7 @@ namespace UchebPrak.Pages
         public KafedraListPage()
         {
             InitializeComponent();
+            Filter();
         }
 
         private void KafedraSortCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -57,6 +58,11 @@ namespace UchebPrak.Pages
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             App.MainFrame.Navigate(new AddEditKafedraPage(new Kafedra()));
+        }
+
+        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filter();
         }
     }
 }

@@ -31,10 +31,10 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="15 0 0 0">
                     <TextBlock>Поиск:</TextBlock>
-                    <TextBox x:Name="SearchTb" Width="100" Margin="5 0 0 0" ></TextBox>
+                    <TextBox x:Name="SearchTb" Width="100" Margin="5 0 0 0" TextChanged="SearchTb_TextChanged_1" ></TextBox>
                 </StackPanel>
             </StackPanel>
-            <ScrollViewer Height="320">
+            <ScrollViewer Height="320" Margin="0 5 0 0">
                 <WrapPanel HorizontalAlignment="Center" x:Name="SotrudniksWp"></WrapPanel>
             </ScrollViewer>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 15 0 0">

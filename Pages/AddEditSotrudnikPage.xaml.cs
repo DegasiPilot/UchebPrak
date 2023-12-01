@@ -51,17 +51,25 @@ namespace UchebPrak.Pages
                 sotrudnik.Familia = FamiliaTb.Text;
                 sotrudnik.Dolgnost = DolgnostCb.Text;
                 sotrudnik.Zarplata = int.Parse(ZarplataTb.Text);
-                sotrudnik.Shef_Id = int.Parse(ShefCb.Text);
+                sotrudnik.Shef_Id = zav_Kafedra == null ? int.Parse(ShefCb.Text) : sotrudnik.TabNomer;
 
-                if (isNew || !App.db.Sotrudnik.Any(x => x.TabNomer == sotrudnik.TabNomer))
-                    App.db.Sotrudnik.Add(sotrudnik);
-                else
+                if (isNew)
                 {
-                    MessageBox.Show("Сотрудник с таким таб. номером уже существует!");
-                    return;
+                    if(!App.db.Sotrudnik.Any(x => x.TabNomer == sotrudnik.TabNomer))
+                        App.db.Sotrudnik.Add(sotrudnik);
+                    else
+                    {
+                        MessageBox.Show("Сотрудник с таким таб. номером уже существует!");
+                        return;
+                    }
+
                 }
-                if(zav_Kafedra != null)
+                if (zav_Kafedra != null && !App.db.Zav_Kafedra.Any(x => x.TabNomer == zav_Kafedra.TabNomer))
+                {
+                    zav_Kafedra.TabNomer = sotrudnik.TabNomer;
                     App.db.Zav_Kafedra.Add(zav_Kafedra);
+                }
+                    
                 App.db.SaveChanges();
                 App.MainFrame.Navigate(new SotrudnilListPage());
             }
@@ -78,7 +86,7 @@ namespace UchebPrak.Pages
                 errors.AppendLine("Выберите должность");
             if (ZarplataTb.Text == "")
                 errors.AppendLine("Введите зарплату");
-            if (ShefCb.SelectedItem == null)
+            if (ShefCb.SelectedItem == null && zav_Kafedra == null)
                 errors.AppendLine("Выберите шефа");
 
             if (errors.Length > 0)
@@ -106,20 +114,16 @@ namespace UchebPrak.Pages
         {
             if ((sender as ComboBox).SelectedItem.ToString() == "зав. кафедрой")
             {
-                ShefCb.IsEnabled = false;
                 zav_Kafedra = new Zav_Kafedra();
                 zav_Kafedra.TabNomer = sotrudnik.TabNomer;
-                ShefCb.ItemsSource = App.db.Zav_Kafedra.ToArray();
-                ShefCb.SelectedItem = zav_Kafedra;
                 sotrudnik.Shef_Id = sotrudnik.TabNomer;
+                ShefCb.IsEnabled = false;
             }
             else
             {
                 ShefCb.IsEnabled = true;
                 if (App.db.Zav_Kafedra.Any(x => x.TabNomer == sotrudnik.TabNomer))
                 {
-                    zav_Kafedra = App.db.Zav_Kafedra.First(x => x.TabNomer == sotrudnik.TabNomer);
-                    App.db.Zav_Kafedra.Remove(zav_Kafedra);
                     zav_Kafedra = null;
                     ShefCb.ItemsSource = App.db.Zav_Kafedra.ToArray();
                     ShefCb.SelectedItem = null;
